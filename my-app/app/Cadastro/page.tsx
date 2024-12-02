@@ -15,7 +15,7 @@ export default function Page() {
 
           {/*Titulo*/}
           <h1 className="text-4xl text-gray-500 text-center mb-8 font-medium">
-            Cadastrar usuario
+            Cadastrar usuário
           </h1>
 
           {/*Inputs*/}
