@@ -23,10 +23,10 @@ export default function Page() {
           <input className="w-full p-3 rounded-xl focus:outline-none focus:ring focus:ring-emerald-200" type="password" placeholder="Senha" required/>
 
           <div className="flex justify-center gap-12 mt-16">
-            <button className="w-24 p-1 rounded-2xl bg-emerald-200 hover:bg-emerald-300 border border-blue-900 text-blue-900">
+            <button className="w-40 p-2 rounded-2xl bg-emerald-200 hover:bg-emerald-300 hover:scale-95 duration-150 border border-blue-900 text-blue-900">
               Entrar
             </button>
-            <button className="w-24 p-1 rounded-2xl bg-emerald-200 hover:bg-emerald-300 border border-blue-900 text-blue-900">
+            <button className="w-40 p-2 rounded-2xl bg-emerald-200 hover:bg-emerald-300 hover:scale-95 duration-150 border border-blue-900 text-blue-900">
               Criar Conta
             </button>
           </div>
