@@ -1,14 +1,11 @@
 import HeaderDeslogado from "./Components/headerDeslogado";
-import DadosDeslogado from "./Components/dadosDeslogado";
-import BotaoVoltar from "./Components/botaoVoltar";
-import Comentario from "./Components/comentario";
+import BodyDeslogado from "./Components/bodyDeslogado";
 
 export default function PerfilDeslogado() {
   return (
-    <main className="bg-gray-200 h-screen">
+    <main className="bg-gray-200 min-h-screen">
       <HeaderDeslogado />
-      <BotaoVoltar />
-      <DadosDeslogado />
+      <BodyDeslogado />
     </main>
   );
 }

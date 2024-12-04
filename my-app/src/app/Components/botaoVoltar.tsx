@@ -9,12 +9,7 @@ const BotaoVoltar = () => {
                     alt="voltar"
                     width={60}
                     height={60}
-                    className="hover:scale-110"
-                    style={{
-                    position: 'absolute',
-                    top: '75px',
-                    left: '228px',
-                }}
+                    className="hover:scale-110 absolute top-[30px] left-[-80px]"
                 >
                 </Image>
             </div>
