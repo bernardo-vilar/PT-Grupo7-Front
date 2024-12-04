@@ -14,7 +14,7 @@ export default function Page() {
         <div className="max-w-sm">
 
           {/*Titulo*/}
-          <h1 className="text-4xl text-gray-500 text-center mb-8 font-medium">
+          <h1 className="text-4xl text-center mb-8 font-medium">
             Cadastrar usuario
           </h1>
 
