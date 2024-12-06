@@ -26,9 +26,11 @@ export default function Page() {
             <button className="w-40 p-2 rounded-2xl bg-emerald-200 hover:bg-emerald-300 hover:scale-95 duration-150 border border-blue-900 text-blue-900">
               Entrar
             </button>
+            <a href="/cadastro">
             <button className="w-40 p-2 rounded-2xl bg-emerald-200 hover:bg-emerald-300 hover:scale-95 duration-150 border border-blue-900 text-blue-900">
               Criar Conta
             </button>
+            </a>
           </div>
         </div>
       </div>
