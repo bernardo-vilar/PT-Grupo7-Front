@@ -4,6 +4,7 @@ const BotaoVoltar = () => {
   return (
         <>
             <div>
+                <a href='/feed'>
                 <Image
                     src="/voltar.png"
                     alt="voltar"
@@ -12,6 +13,7 @@ const BotaoVoltar = () => {
                     className="hover:scale-110 absolute top-[30px] left-[-80px]"
                 >
                 </Image>
+                </a>
             </div>
         </>
   )
