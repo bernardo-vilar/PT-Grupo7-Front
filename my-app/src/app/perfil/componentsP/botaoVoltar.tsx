@@ -1,10 +1,11 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 const BotaoVoltar = () => {
   return (
         <>
             <div>
-                <a href='/feed'>
+            <Link href={"/feed"}> 
                 <Image
                     src="/voltar.png"
                     alt="voltar"
@@ -13,7 +14,7 @@ const BotaoVoltar = () => {
                     className="hover:scale-110 absolute top-[30px] left-[-80px]"
                 >
                 </Image>
-                </a>
+                </Link>
             </div>
         </>
   )

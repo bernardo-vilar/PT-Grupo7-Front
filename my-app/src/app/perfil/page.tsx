@@ -1,7 +1,7 @@
 import PerfilDeslogado from "./PerfilDeslogado";
 import PerfilLogado from "./PerfilLogado";
 
-const isLoggedIn = true; 
+const isLoggedIn = false; 
 
 const Perfil = () => {
   return isLoggedIn ? <PerfilLogado /> : <PerfilDeslogado />;

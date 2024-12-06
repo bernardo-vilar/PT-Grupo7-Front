@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const HeaderLogado = () => {
   return (
@@ -22,7 +23,7 @@ const HeaderLogado = () => {
             className="hover:scale-110"
           ></Image>
 
-          <a href="\perfil">
+          <Link href={"/perfil"}> 
           <Image
             src="/perfil.png"
             alt="Foto de perfil"
@@ -30,7 +31,7 @@ const HeaderLogado = () => {
             height={30}
             className="rounded-full hover:scale-110"
           ></Image>
-          </a>
+          </Link>
 
           <Image
             src="/sair.png"

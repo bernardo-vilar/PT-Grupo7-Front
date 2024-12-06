@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Page() {
   return ( 
@@ -26,11 +27,11 @@ export default function Page() {
           <input className="w-full p-3 rounded-xl focus:outline-none focus:ring focus:ring-emerald-200" type="departamento" placeholder="Departamento" required/>
 
           <div className="flex justify-center gap-12 mt-16">
-            <a href="/login"> 
+            <Link href={"/login"}> 
             <button className="w-40 p-2 rounded-2xl bg-emerald-200 hover:bg-emerald-300 hover:scale-95 duration-150 border border-blue-900 text-blue-900">
               Criar Conta
             </button>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
