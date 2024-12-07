@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import HeaderLogado from '../components/headerLogado';
 import ProfessorCard from '../components/professorCard';
 import OrdernarLogado from '../components/ordenarLogado';
+import ModalAvaliacao from '../components/modalAvaliacao';
 
 const FeedLogado = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   // Dados dos novos professores
   const novosProfessores = [
     { nome: "Professor(a) 1", disciplina: "Disciplina 1", foto: "/lamar.jpg" },
@@ -66,6 +69,10 @@ const FeedLogado = () => {
       </section>
 
       <hr className="border-t-2 border-black my-4 mx-auto w-11/12" style={{ width: "calc(100% - 12rem)" }} />
+        
+      {/* Modal */}
+      <ModalAvaliacao isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+
     </main>
   );
 };
