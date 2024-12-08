@@ -1,10 +1,23 @@
 import React, { useState } from "react";
 import ModalAvaliacao from "./modalAvaliacao";
+import TabelaOrdenacao from "./tabelaOrdenacao";
 
 const OrdernarLogado = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Controle do modal
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Controle do dropdown
+
+  // Funções para abrir/fechar o modal
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  // Função para alternar o dropdown
+  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
+
+  // Lida com a opção escolhida no dropdown
+  const handleOptionSelect = (option: string) => {  // Tipo explícito 'string' para 'option'
+    console.log("Opção selecionada:", option);
+    setIsDropdownOpen(false); // Fecha o menu após a seleção
+  };
 
   return (
     <div>
@@ -14,21 +27,28 @@ const OrdernarLogado = () => {
           Todos os professores
         </h2>
         <div className="flex gap-0">
-          {/* Button to open the modal */}
+          {/* Botão para abrir o modal */}
           <button
             onClick={openModal}
             className="bg-blue-400 p-2 rounded-lg hover:bg-blue-500 border-2 border-white h-10 w-auto flex mr-[1rem] relative top-[2.5rem]"
           >
             Nova publicação
           </button>
-          <button className="bg-blue-400 p-2 rounded-lg hover:bg-blue-500 border-2 border-white h-10 w-auto flex mr-[8rem] relative top-[2.5rem]">
+          {/* Botão para exibir o dropdown */}
+          <button
+            onClick={toggleDropdown}
+            className="bg-blue-400 p-2 rounded-lg hover:bg-blue-500 border-2 border-white h-10 w-auto flex mr-[8rem] relative top-[2.5rem]"
+          >
             Ordenar
           </button>
         </div>
       </div>
 
-      {/* ModalAvaliacao Component */}
+      {/* Componente Modal */}
       <ModalAvaliacao isOpen={isModalOpen} onClose={closeModal} />
+
+      {/* Componente Dropdown */}
+      {isDropdownOpen && <TabelaOrdenacao onClose={handleOptionSelect} />}
     </div>
   );
 };
