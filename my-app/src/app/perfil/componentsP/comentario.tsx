@@ -19,13 +19,14 @@ const Comentario = () => {
             <div className="absolute my-11 mx-2 w-full px-10">
                 <p className="font-inter text-[#222E50] text-sm w-full px-4">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin</p>
                 <div className="flex justify-center item-center absolute my-2">
-                    <Image 
+                    <button ><Image 
                         src="/comment.png"
                         alt="Simbolo de Comentario"
                         width={25}
                         height={25}
                         className="hover:scale-110"
                     ></Image>
+                    </button>
                     <p className="font-inter text-[#222E50] mx-2"> 2 comentarios</p>
 
             </div>
