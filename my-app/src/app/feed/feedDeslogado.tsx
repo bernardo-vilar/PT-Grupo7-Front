@@ -1,11 +1,10 @@
-// pages/FeedDeslogado.js
 "use client";
 
 import { useEffect, useState } from "react";
 import HeaderDeslogado from "../components/headerDeslogado";
 import OrdernarDeslogado from "../components/ordernarDeslogado";
 import ListaDeProfessores from "../components/listaDeProfessores";
-import { getUser } from "@/utils/api"; // Importando o método da API
+import { getProfessores } from "@/utils/api"; // Importando o método correto da API
 
 export default function FeedDeslogado() {
   const [novosProfessores, setNovosProfessores] = useState([]);
@@ -16,7 +15,7 @@ export default function FeedDeslogado() {
     // Carregar dados dos professores ao montar o componente
     const fetchProfessores = async () => {
       try {
-        const professores = await getUser(); // Supondo que essa rota retorna os professores
+        const professores = await getProfessores(); // Chama a função getProfessores
         setNovosProfessores(professores.slice(0, 4)); // Exemplo: primeiros 4 como "novos"
         setTodosProfessores(professores); // Todos os professores
       } catch (error) {

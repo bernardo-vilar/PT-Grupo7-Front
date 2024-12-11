@@ -48,9 +48,8 @@ export const patchUserReq = async (user: Partial<User>, id: number) => {
 // Interface para Professor
 interface Professor {
   nome: string;
-  disciplina: string;
+  disciplinaID: number;  // Modificado para 'disciplinaID', que é um número
   foto: string;
-  email?: string; // Adicional, caso necessário
   departamento?: string;
 }
 
