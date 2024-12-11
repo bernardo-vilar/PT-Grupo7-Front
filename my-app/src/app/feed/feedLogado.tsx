@@ -57,11 +57,11 @@ const FeedLogado = () => {
 
       {/* Card dos novos professores */}
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-7 mt-10 max-w-7xl mx-auto">
-        {novosProfessores.map((professor, index) => (
+        {novosProfessores.map((professor) => (
           <ProfessorCard
-            key={index}
+            key={professor.id} // Usando 'id' como chave
             nome={professor.nome}
-            disciplina={professor.disciplina}  // Passando a disciplina diretamente
+            disciplina={professor.disciplina || { nome: "Sem disciplina" }} // Fallback caso disciplina não exista
             foto={professor.foto || "/lamar.jpg"} // Garantir foto padrão
           />
         ))}
@@ -74,12 +74,12 @@ const FeedLogado = () => {
 
       {/* Card dos todos os professores */}
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-7 mt-10 max-w-7xl mx-auto">
-        {professoresFiltrados.map((professor, index) => (
+        {professoresFiltrados.map((professor) => (
           <ProfessorCard
-            key={index}
+            key={professor.id} // Usando 'id' como chave
             nome={professor.nome}
-            disciplina={professor.disciplina}  // Passando a disciplina diretamente
-            foto={professor.foto || "/lamar.jpg"} // Garantir foto padrão
+            disciplina={professor.disciplina || { nome: "Sem disciplina" }} // Fallback caso disciplina não exista
+            foto={professor.foto || "/lamar.jpg"}
           />
         ))}
       </section>
