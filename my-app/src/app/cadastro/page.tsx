@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { createUser } from "@/utils/api"; // Import the createUser function from api.ts
+import { createUser } from "@/utils/api"; 
 
 export default function CadastroPage() {
   const [formData, setFormData] = useState({
@@ -15,27 +15,22 @@ export default function CadastroPage() {
 
   const router = useRouter();
 
-  // Handle input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      // Call the createUser function to send data to the backend
       const response = await createUser(formData);
 
-      // Notify the user and navigate to the login page upon successful registration
-      alert("User registered successfully!");
+      alert("Usuário registrado com sucesso!");
       router.push("/login");
     } catch (error: any) {
-      // Display an error message in case of failure
-      console.error("Error registering user:", error.message || error);
-      alert("Failed to register user. Please try again.");
+      console.error("Erro ao registrar usuário:", error.message || error);
+      alert("Erro ao registrar usuário. Tente novamente.");
     }
   };
 

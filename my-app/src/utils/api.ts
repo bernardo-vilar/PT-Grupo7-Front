@@ -24,7 +24,6 @@ export const getUser = async () => {
   }
 };
 
-// Create a new user
 export const createUser = async (user: User) => {
   try {
     const response = await api.post("/user", user); 
@@ -34,10 +33,14 @@ export const createUser = async (user: User) => {
   }
 };
 
-// Update user 
-export const patchUserReq = async (user: Partial<User>, id: number) => {
+export const loginUser = async (credentials: { email: string; senha: string }) => {
+    const response = await api.post("/auth/login", credentials); 
+    return response.data; 
+  };
+
+export const patchUser = async (user: Partial<User>, id: number) => {
   try {
-    const response = await api.patch(`/user/${id}`, user); // Update user by ID
+    const response = await api.patch(`/user/${id}`, user);
     return response.data;
   } catch (error: any) {
     throw new Error(error.response?.data?.message || "Failed to update user");
