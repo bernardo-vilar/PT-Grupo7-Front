@@ -8,6 +8,13 @@ interface User {
   departamento: string;
 }
 
+interface Avaliacao {
+  authorId: number; // ID do autor da avaliação
+  professorID: number; // ID do professor avaliado
+  disciplinaID: number; // ID da disciplina
+  conteudo: string; // Conteúdo da avaliação
+}
+
 const api = axios.create({
   baseURL: "http://localhost:3000",
   headers: {
@@ -41,5 +48,35 @@ export const patchUserReq = async (user: Partial<User>, id: number) => {
     return response.data;
   } catch (error: any) {
     throw new Error(error.response?.data?.message || "Failed to update user");
+  }
+};
+
+
+// Create a new avaliação
+export const createAvaliacao = async (avaliacao: Avaliacao) => {
+  try {
+    const response = await api.post("/avaliacao", avaliacao); 
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || "Failed to create avaliação");
+  }
+};
+
+
+export const getProfessorByName = async (nome: string) => {
+  try {
+    const response = await api.get(`/professor?nome=${nome}`);
+    return response.data; // Supondo que a API retorna o objeto do professor
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || "Failed to fetch professor");
+  }
+};
+
+export const getDisciplinaByName = async (nome: string) => {
+  try {
+    const response = await api.get(`/disciplina?nome=${nome}`);
+    return response.data; // Supondo que a API retorna o objeto da disciplina
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || "Failed to fetch disciplina");
   }
 };
