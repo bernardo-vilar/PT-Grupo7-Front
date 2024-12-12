@@ -8,6 +8,13 @@ interface User {
   departamento: string;
 }
 
+interface Avaliacao {
+  authorId: number; 
+  professorID: number; 
+  disciplinaID: number; 
+  conteudo: string; 
+}
+
 const api = axios.create({
   baseURL: "http://localhost:3000",
   headers: {
@@ -48,6 +55,7 @@ export const patchUser = async (user: Partial<User>, id: number) => {
 };
 
 
+
 // Interface para Professor
 interface Professor {
   nome: string;
@@ -85,3 +93,15 @@ export const patchProfessor = async (professor: Partial<Professor>, id: number) 
     throw new Error(error.response?.data?.message || "Falha ao atualizar professor");
   }
 };
+
+
+// Create a new avaliação
+export const createAvaliacao = async (avaliacao: Avaliacao) => {
+  try {
+    const response = await api.post("/avaliacao", avaliacao); 
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || "Failed to create avaliação");
+  }
+};
+

@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { createUser } from "@/utils/api"; 
+import { createUser } from "@/utils/api"; // Import the createUser function from api.ts
+import Link from "next/link";
 
 export default function CadastroPage() {
   const [formData, setFormData] = useState({
@@ -98,6 +99,13 @@ export default function CadastroPage() {
               Criar Conta
             </button>
           </form>
+          <div className="flex justify-center gap-12 mt-8">
+            <Link href="/login">
+              <button className="text-blue-500 hover:text-blue-700">
+                Já tem uma conta? Faça login.
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </main>
