@@ -9,10 +9,10 @@ interface User {
 }
 
 interface Avaliacao {
-  authorId: number; // ID do autor da avaliação
-  professorID: number; // ID do professor avaliado
-  disciplinaID: number; // ID da disciplina
-  conteudo: string; // Conteúdo da avaliação
+  authorId: number; 
+  professorID: number; 
+  disciplinaID: number; 
+  conteudo: string; 
 }
 
 const api = axios.create({

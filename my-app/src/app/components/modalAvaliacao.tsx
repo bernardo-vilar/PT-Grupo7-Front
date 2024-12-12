@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { createAvaliacao, getProfessorByName, getDisciplinaByName } from "@/utils/api";
+import { createAvaliacao } from "@/utils/api"; // Importa a função de criação de avaliação
 
 interface ModalAvaliacaoProps {
   isOpen: boolean;
@@ -7,36 +7,30 @@ interface ModalAvaliacaoProps {
 }
 
 const ModalAvaliacao: FC<ModalAvaliacaoProps> = ({ isOpen, onClose }) => {
-  const [professorNome, setProfessorNome] = useState("");
-  const [disciplinaNome, setDisciplinaNome] = useState("");
+  // Estados para os campos do formulário
+  const [professorID, setProfessorID] = useState("");
+  const [disciplinaID, setDisciplinaID] = useState("");
   const [conteudo, setConteudo] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   if (!isOpen) return null;
 
+  // Função para enviar a avaliação
   const handleSubmit = async () => {
     setLoading(true);
     setError(null);
 
     try {
-      // Busca os IDs com base nos nomes
-      const professor = await getProfessorByName(professorNome);
-      const disciplina = await getDisciplinaByName(disciplinaNome);
-
-      // Validação se os dados foram encontrados
-      if (!professor || !disciplina) {
-        throw new Error("Professor ou disciplina não encontrados.");
-      }
-
+      // Convertendo os IDs para números antes de enviar
       const avaliacao = {
-        authorId: 1, // Substitua conforme necessário
-        professorID: professor.id,
-        disciplinaID: disciplina.id,
+        authorId: 1, // Assumindo que o ID do autor é 1 (substitua conforme necessário)
+        professorID: Number(professorID),
+        disciplinaID: Number(disciplinaID),
         conteudo,
       };
 
-      await createAvaliacao(avaliacao); // Envia a avaliação
+      await createAvaliacao(avaliacao); // Chama a função de criação
       alert("Avaliação enviada com sucesso!");
       onClose(); // Fecha o modal
     } catch (err: any) {
@@ -51,25 +45,25 @@ const ModalAvaliacao: FC<ModalAvaliacaoProps> = ({ isOpen, onClose }) => {
       <div className="bg-emerald-200 rounded-lg p-6 w-[600px] h-[500px]">
         <h2 className="text-2xl font-bold mb-4">Nova Avaliação</h2>
         <div>
-          {/* Nome do Professor */}
+          {/* Campo para Nome do Professor */}
           <input
             type="text"
-            placeholder="Nome do Professor"
+            placeholder="ID do Professor"
             className="w-full mb-4 p-2 border rounded-lg"
-            value={professorNome}
-            onChange={(e) => setProfessorNome(e.target.value)}
+            value={professorID}
+            onChange={(e) => setProfessorID(e.target.value)}
           />
 
-          {/* Nome da Disciplina */}
+          {/* Campo para Disciplina */}
           <input
             type="text"
-            placeholder="Nome da Disciplina"
+            placeholder="ID da Disciplina"
             className="w-full mb-4 p-2 border rounded-lg"
-            value={disciplinaNome}
-            onChange={(e) => setDisciplinaNome(e.target.value)}
+            value={disciplinaID}
+            onChange={(e) => setDisciplinaID(e.target.value)}
           />
 
-          {/* Conteúdo da Avaliação */}
+          {/* Campo para Conteúdo */}
           <textarea
             placeholder="Escreva sua avaliação..."
             className="w-full p-2 border rounded-lg h-60 resize-none"
@@ -78,8 +72,10 @@ const ModalAvaliacao: FC<ModalAvaliacaoProps> = ({ isOpen, onClose }) => {
           />
         </div>
 
+        {/* Mensagem de Erro */}
         {error && <p className="text-red-500 mt-2">{error}</p>}
 
+        {/* Botões */}
         <div className="flex justify-end gap-4 mt-4">
           <button
             onClick={onClose}
