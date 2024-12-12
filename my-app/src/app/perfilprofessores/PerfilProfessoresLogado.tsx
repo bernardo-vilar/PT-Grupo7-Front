@@ -3,10 +3,14 @@ import BodyProfessores from "./componentsPProfessor/bodyProfessores";
 
 
 const PerfilProfessoresLogado = () => {
+
+  const fotoPerfilProfessores = "/PerfilProfessores.png"
+  const nomeProfessores = "Rick Sanches"
+
   return (
     <main className="bg-gray-200 h-screen">
       <HeaderLogado />
-      <BodyProfessores />
+      <BodyProfessores FotoPerfilProfessores={fotoPerfilProfessores} NomeProfessor={nomeProfessores}/>
     </main>
   );
 };
