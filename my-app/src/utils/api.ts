@@ -9,12 +9,11 @@ interface User {
 }
 
 interface Avaliacao {
-  authorId: number; 
-  professorID: number; 
-  disciplinaID: number; 
-  conteudo: string; 
+  authorId: number;
+  professorName: string; // Nome do professor
+  disciplinaName: string; // Nome da disciplina
+  conteudo: string;
 }
-
 const api = axios.create({
   baseURL: "http://localhost:3000",
   headers: {
@@ -95,7 +94,6 @@ export const patchProfessor = async (professor: Partial<Professor>, id: number) 
 };
 
 
-// Create a new avaliação
 export const createAvaliacao = async (avaliacao: Avaliacao) => {
   try {
     const response = await api.post("/avaliacao", avaliacao); 
