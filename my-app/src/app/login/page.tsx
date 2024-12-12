@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { loginUser } from "@/utils/api";
 import Link from "next/link";
 
-export default function Page() {
+export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -27,6 +27,11 @@ export default function Page() {
       const response = await loginUser({ email, senha });
       console.log(response.message);
       alert("Login successful!");
+
+      // Save login state in localStorage
+      localStorage.setItem("isLoggedIn", "true");
+
+      // Redirect to the Feed page after successful login
       router.push("/feed");
     } catch (error: any) {
       console.error("Login failed:", error.message || error);

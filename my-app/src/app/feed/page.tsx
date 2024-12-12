@@ -1,13 +1,25 @@
 "use client";
 
-import React from "react";
-import FeedDeslogado from "./feedDeslogado";
+import React, { useEffect, useState } from "react";
 import FeedLogado from "./feedLogado";
-
-const isLoggedIn = true; // Estado de login declarado no mesmo arquivo
+import FeedDeslogado from "./feedDeslogado";
 
 const Feed = () => {
-  return isLoggedIn ? <FeedLogado /> : <FeedDeslogado />;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // On mount, check if the user is logged in using localStorage
+  useEffect(() => {
+    const storedLoginState = localStorage.getItem("isLoggedIn");
+    if (storedLoginState === "true") {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  return (
+    <div>
+      {isLoggedIn ? <FeedLogado /> : <FeedDeslogado />}
+    </div>
+  );
 };
 
 export default Feed;

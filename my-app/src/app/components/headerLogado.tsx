@@ -1,8 +1,15 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const HeaderLogado = () => {
+  const router = useRouter();
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    router.push("/login");
+  };
+
   return (
     <>
       <header className="bg-customGreen flex h-[4rem] items-center justify-between">
@@ -23,23 +30,25 @@ const HeaderLogado = () => {
             className="hover:scale-110"
           ></Image>
 
-          <Link href={"/perfil"}> 
-          <Image
-            src="/perfil.png"
-            alt="Foto de perfil"
-            width={30}
-            height={30}
-            className="rounded-full hover:scale-110"
-          ></Image>
+          <Link href={"/perfil"}>
+            <Image
+              src="/perfil.png"
+              alt="Foto de perfil"
+              width={30}
+              height={30}
+              className="rounded-full hover:scale-110"
+            ></Image>
           </Link>
 
-          <Image
-            src="/sair.png"
-            alt="Sair"
-            width={30}
-            height={30}
-            className="hover:scale-110"
-          ></Image>
+          {/* Sair (Logout) Button */}
+          <button onClick={handleLogout} className="hover:scale-110">
+            <Image
+              src="/sair.png"
+              alt="Sair"
+              width={30}
+              height={30}
+            ></Image>
+          </button>
         </div>
       </header>
     </>
@@ -47,4 +56,5 @@ const HeaderLogado = () => {
 };
 
 export default HeaderLogado;
+
 
