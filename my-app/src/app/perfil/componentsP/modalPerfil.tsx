@@ -8,12 +8,13 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg p-6 w-full max-w-md">
-        <button
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+      <button 
+            className="absolute top-4 right-4 text-gray-600 hover:text-gray-800 text-6xl p-2"
           onClick={onClose}
-        >
-          &times;
-        </button>
+              >
+            &times;
+          </button>
+
         <div className="text-center mb-4">
           <img
             src="/perfil.png"
