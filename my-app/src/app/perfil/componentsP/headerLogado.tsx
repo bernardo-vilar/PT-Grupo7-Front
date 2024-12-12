@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-const HeaderLogado = () => {
+const HeaderLogado = ({FotoPerfil}) => {
   return (
     <>
       <header className="bg-customGreen flex h-[4rem] items-center justify-between">
@@ -23,7 +23,7 @@ const HeaderLogado = () => {
           ></Image>
 
           <Image
-            src="/perfil.png"
+            src= {FotoPerfil}
             alt="Foto de perfil"
             width={30}
             height={30}

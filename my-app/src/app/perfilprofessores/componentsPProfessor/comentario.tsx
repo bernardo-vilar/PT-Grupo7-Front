@@ -1,35 +1,37 @@
 import Image from "next/image"
+import Link from "next/link"
 
-const Comentario = () => {
+const Comentario = ({FotoPerfil, NomeUsuario, CreatedAt, NomeProfessor, DisciplinaProfessor, ConteudoComentario, NumeroComentarios}) => {
     return (
         <>      
-            <div className="bg-[#3EEE9A] w-[630px] h-[160px] rounded-[32px] opacity-100 my-2 mx-2">
-                <div className="flex item-center absolute my-2 mx-2">
+            <div className="relative bg-[#3EEE9A] w-[630px] rounded-[32px] opacity-100 py-10 my-4 mx-2">
+            <p className="font-inter text-[#222E50] text-lg w-[590px] my-3 mx-12 px-4">{ConteudoComentario}</p>
+            <div className="flex item-center absolute top-[10px] left-[10px]">
                 <Image                                
-                        src= "/perfil.png"
+                        src= {FotoPerfil}
                         alt= "Foto de perfil"
                         width={45}
                         height={45}
                         className="rounded-[70px]"
                             >
                 </Image>
-                <p className="font-bold my-2 mx-2"> Morty Gamer</p>
-                <p className="font-inter my-2 text-[#71767B]"> · 17/04/2024, ás 21:42 · João Frango · Surf </p>
+                <p className="font-bold my-2 mx-2"> {NomeUsuario}</p>
+                <p className="font-inter my-2 text-[#71767B]"> {CreatedAt} · {NomeProfessor} · {DisciplinaProfessor} </p>
                 </div>
-            <div className="absolute my-11 mx-2 w-full px-10">
-                <p className="font-inter text-[#222E50] text-sm w-full px-4">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin</p>
-                <div className="flex justify-center item-center absolute my-2">
-                    <button ><Image 
+                <div className="absolute my-11 mx-2 w-full px-10">
+            </div>
+            <div className="flex absolute bottom-[5px] left-[55px]"> 
+                <Link href={"/avaliacoes"}>
+                    <Image 
                         src="/comment.png"
                         alt="Simbolo de Comentario"
-                        width={25}
-                        height={25}
+                        width={30}
+                        height={30}
                         className="hover:scale-110"
                     ></Image>
-                    </button>
-                    <p className="font-inter text-[#222E50] mx-2"> 2 comentarios</p>
+                </Link>
+                <p className="text-[#222E50] absolute left-[30px] bottom-[1px]" style={{fontFamily: "sans-serif", fontSize: "17px", whiteSpace: 'nowrap'}}> {NumeroComentarios} comentarios</p>
 
-            </div>
             </div>
             </div>
         </>    

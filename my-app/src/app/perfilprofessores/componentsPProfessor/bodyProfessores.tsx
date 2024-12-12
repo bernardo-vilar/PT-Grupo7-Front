@@ -4,7 +4,18 @@ import Cursos from "./cursos";
 import BotaoVoltar from "./botaoVoltar";
 import Comentario from "./comentario";
 
-const BodyProfessores = () => {
+const BodyProfessores = ({FotoPerfilProfessores, NomeProfessor}) => {
+
+    const cursosProfessor = "Muitos cursos"
+    const departamentoProfessor = "CIC"
+    const fotoPerfilComentario = "/perfil.png"
+    const nomeUsuarioComentario = "Morty Gamer"
+    const createdAt = "29 de fev, as 23:99"
+    const nomeProfessor = "Joao Frango"
+    const disciplinaProfessor = "Surf"
+    const conteudoComentario = "Professor Bacana. Adoro quando falta!Professor Bacana. Adoro quando falta!Professor Bacana. Adoro quando falta!Professor Bacana. Adoro quando falta!"
+    const numeroComentarios = "10"
+
     return (
         <>
             <div className="flex items-center justify-center h-screen bg-gray-200">
@@ -17,23 +28,24 @@ const BodyProfessores = () => {
                     >
                         <div>
                             <Image                                
-                                src= "/PerfilProfessores.png"
+                                src= {FotoPerfilProfessores}
                                 alt= "Foto de perfil"
                                 width={140}
                                 height={140}
                                 className="rounded-[70px] relative top-[75px] left-[60px]"
                             >
                             </Image>
-                            <h2 className="relative top-[70px] left-[75px] font-bold text-lg mt-4">Rick Sanchez</h2>
-                            <Departamento />
-                            <Cursos />
+                            <h2 className="relative top-[70px] left-[75px] font-bold text-lg mt-4">{NomeProfessor}</h2>
+                            <Departamento DepartamentoProfessor={departamentoProfessor}/>
+                            <Cursos CursosProfessor={cursosProfessor}/>
                         </div>
                         <div className="flex item-center justify-center w-[646px] h-[1px] opacity-100 bg-[#000] absolute top-[350px]"> </div>
                         <BotaoVoltar />
                         <div className="absolute top-[350px] left-[10px]">
                             <h2 className="font-bold text-black">Publicações</h2>
                         </div>
-                        <div className="absolute top-[380px]"> <Comentario /> <Comentario /></div>  
+                        <div className="absolute top-[380px]"> 
+                            <Comentario FotoPerfil={fotoPerfilComentario} NomeUsuario={nomeUsuarioComentario} CreatedAt={createdAt} NomeProfessor={nomeProfessor} DisciplinaProfessor={disciplinaProfessor} ConteudoComentario={conteudoComentario} NumeroComentarios={numeroComentarios}/></div>  
                 </div>
             </div>
         </div>
