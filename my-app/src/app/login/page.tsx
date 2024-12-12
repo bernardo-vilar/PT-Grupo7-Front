@@ -26,11 +26,11 @@ export default function Page() {
     try {
       const response = await loginUser({ email, senha });
       console.log(response.message);
-      alert('Login successful!');
-      router.push("/feed"); 
+      alert("Login successful!");
+      router.push("/feed");
     } catch (error: any) {
       console.error("Login failed:", error.message || error);
-      setErrorMessage("Erro ao realizar login. Tente novamente."); 
+      setErrorMessage("Erro ao realizar login. Tente novamente.");
     }
   };
 
@@ -48,7 +48,7 @@ export default function Page() {
           {errorMessage && <p className="text-red-500 text-center">{errorMessage}</p>}
 
           {/* Form */}
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="flex flex-col items-center w-[400px]">
             <input
               className="w-full mb-4 p-3 rounded-xl focus:outline-none focus:ring focus:ring-emerald-200"
               type="email"
@@ -67,21 +67,23 @@ export default function Page() {
               onChange={handleChange}
               required
             />
-            <button
-              type="submit"
-              className="w-full p-3 mt-4 rounded-xl bg-emerald-200 hover:bg-emerald-300 hover:scale-95 duration-150 border border-blue-900 text-blue-900"
-            >
-              Entrar
-            </button>
-          </form>
-
-          <div className="flex justify-center gap-12 mt-16">
-            <Link href={"/cadastro"}>
-              <button className="w-40 p-2 rounded-2xl bg-emerald-200 hover:bg-emerald-300 hover:scale-95 duration-150 border border-blue-900 text-blue-900">
-                Criar Conta
+            <div className="flex justify-between items-center gap-6 justify-center">
+              <button
+                type="submit"
+                className="flex-1 p-2 w-28 rounded-xl bg-emerald-200 hover:bg-emerald-300 hover:scale-95 duration-150 border border-blue-900 text-blue-900"
+              >
+                Entrar
               </button>
-            </Link>
-          </div>
+              <Link href="/cadastro">
+                <button
+                  type="button"
+                  className="flex-1 p-2 w-28 rounded-xl bg-emerald-200 hover:bg-emerald-300 hover:scale-95 duration-150 border border-blue-900 text-blue-900"
+                >
+                  Criar Conta
+                </button>
+              </Link>
+            </div>
+          </form>
         </div>
       </div>
     </main>

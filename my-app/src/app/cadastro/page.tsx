@@ -45,7 +45,7 @@ export default function CadastroPage() {
           <h1 className="text-4xl text-center mb-8 font-medium">Cadastrar usuário</h1>
 
           {/* Form */}
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="flex flex-col items-center w-[400px]">
             <input
               className="w-full mb-4 p-3 rounded-xl focus:outline-none focus:ring focus:ring-emerald-200"
               type="text"
@@ -93,7 +93,7 @@ export default function CadastroPage() {
             />
             <button
               type="submit"
-              className="w-full p-3 mt-4 rounded-xl bg-emerald-200 hover:bg-emerald-300 hover:scale-95 duration-150 border border-blue-900 text-blue-900"
+              className="w-40 p-2 mt-4 rounded-xl bg-emerald-200 hover:bg-emerald-300 hover:scale-95 duration-150 border border-blue-900 text-blue-900"
             >
               Criar Conta
             </button>
