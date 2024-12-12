@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from 'next/link';
+import Link from 'next/link';
 
 const Comentario = ({FotoPerfil, NomeUsuario, CreatedAt, NomeProfessor, DisciplinaProfessor, ConteudoComentario, NumeroComentarios}) => {
     return (
