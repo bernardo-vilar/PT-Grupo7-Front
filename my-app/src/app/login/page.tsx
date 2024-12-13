@@ -30,7 +30,7 @@ export default function LoginPage() {
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("user", JSON.stringify(response.user)); 
 
-      router.push("/feed");
+      router.push("/");
     } catch (error: any) {
       console.error("Login failed:", error.message || error);
       setErrorMessage("Erro ao realizar login. Tente novamente.");

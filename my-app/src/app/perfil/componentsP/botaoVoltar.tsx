@@ -5,7 +5,7 @@ const BotaoVoltar = () => {
   return (
         <>
             <div>
-            <Link href={"/feed"}> 
+            <Link href={"/"}> 
                 <Image
                     src="/voltar.png"
                     alt="voltar"
