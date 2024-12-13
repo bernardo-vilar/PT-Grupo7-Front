@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { createUser } from "@/utils/api"; // Import the createUser function from api.ts
+import { createUser } from "@/utils/api";
 import Link from "next/link";
 
 export default function CadastroPage() {

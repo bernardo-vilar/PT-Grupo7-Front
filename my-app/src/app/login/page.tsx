@@ -25,13 +25,11 @@ export default function LoginPage() {
 
     try {
       const response = await loginUser({ email, senha });
-      console.log(response.message);
-      alert("Login successful!");
+      console.log("Login Response:", response);
 
-      // Save login state in localStorage
       localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("user", JSON.stringify(response.user)); 
 
-      // Redirect to the Feed page after successful login
       router.push("/feed");
     } catch (error: any) {
       console.error("Login failed:", error.message || error);
