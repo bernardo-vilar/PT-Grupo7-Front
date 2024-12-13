@@ -26,7 +26,7 @@ const BodyLogado = () => {
       Curso: user.curso || 'Curso Desconhecido',
       Departamento: user.departamento || 'Departamento Desconhecido',
       Email: user.email || 'email@dominio.com',
-      FotoPerfil: user.foto || '', 
+      FotoPerfil: user.foto || '/perfil.png', 
     });
   }, []);
 
