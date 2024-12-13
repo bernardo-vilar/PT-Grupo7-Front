@@ -7,6 +7,7 @@ import Email from "./email";
 import BotaoVoltar from "./botaoVoltar";
 import Comentario from "./comentario";
 import ModalEditarPerfil from "./modalPerfil"; 
+import { fetchAvaliacoesByUser } from "@/utils/api";
 
 const BodyLogado = () => {
   const [userData, setUserData] = useState({
@@ -17,6 +18,7 @@ const BodyLogado = () => {
     FotoPerfil: '',
   });
 
+  const [avaliacoes, setAvaliacoes] = useState([]); 
   const [isModalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
@@ -26,9 +28,27 @@ const BodyLogado = () => {
       Curso: user.curso || 'Curso Desconhecido',
       Departamento: user.departamento || 'Departamento Desconhecido',
       Email: user.email || 'email@dominio.com',
-      FotoPerfil: user.foto || '/perfil.png', 
+      FotoPerfil: user.foto || '/perfil.png',
     });
+  
+    const fetchUserAvaliacoes = async () => {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/avaliacao/user/${user.id}`);
+        if (!response.ok) {
+          throw new Error(`API responded with status ${response.status}`);
+        }
+  
+        const data = await response.json();
+        setAvaliacoes(data); 
+      } catch (error) {
+        console.error("Error fetching avaliacoes:", error.message || error);
+        alert("Erro ao carregar avaliações. Tente novamente mais tarde.");
+      }
+    };
+  
+    fetchUserAvaliacoes();
   }, []);
+  
 
   const handleOpenModal = () => setModalOpen(true);
   const handleCloseModal = () => setModalOpen(false);
@@ -80,16 +100,24 @@ const BodyLogado = () => {
           </div>
 
           <div className="absolute top-[380px]">
-            <Comentario 
-              FotoPerfil={userData.FotoPerfil}
-              NomeUsuario={userData.NomeUsuario}
-              CreatedAt="17/04/2024, às 21:42"
-              NomeProfessor="João Frango"
-              DisciplinaProfessor="Surf"
-              ConteudoComentario="Contrary to popular belief, Lorem Ipsum is not simply random text."
-              NumeroComentarios="2"
-            />
+            {avaliacoes.length > 0 ? (
+              avaliacoes.map((avaliacao) => (
+                <Comentario
+                  key={avaliacao.id}
+                  FotoPerfil={userData.FotoPerfil}
+                  NomeUsuario={userData.NomeUsuario}
+                  CreatedAt={new Date(avaliacao.createdAt).toLocaleString()}
+                  NomeProfessor={avaliacao.professor?.nome || "Professor desconhecido"}
+                  DisciplinaProfessor={avaliacao.disciplina?.nome || "Disciplina desconhecida"}
+                  ConteudoComentario={avaliacao.conteudo}
+                  NumeroComentarios={avaliacao.comments?.length?.toString() || "0"} 
+                />
+              ))
+            ) : (
+              <p>Nenhuma avaliação encontrada.</p>
+            )}
           </div>
+
         </div>
       </div>
 

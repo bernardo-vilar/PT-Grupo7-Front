@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from "react";
-import { createAvaliacao, getDisciplinas, getProfessores } from "@/utils/api"; // Importa as funções de criação de avaliação, buscar disciplinas e buscar professores
+import { createAvaliacao, getDisciplinas, getProfessores } from "@/utils/api"; 
 
 interface ModalAvaliacaoProps {
   isOpen: boolean;
@@ -44,15 +44,23 @@ const ModalAvaliacao: FC<ModalAvaliacaoProps> = ({ isOpen, onClose }) => {
     setLoading(true);
     setError(null);
 
-    try {
-      // A avaliação é criada com o ID do professor e disciplina automaticamente
-      const avaliacao = {
-        authorId: 1, // Substituir pelo ID real do autor (provavelmente vem de um estado ou contexto)
-        professorID: professorID, // Professor ID
-        disciplinaID: disciplinaID, // Disciplina ID
-        conteudo, // Conteúdo da avaliação
-      };
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    const userId = user.id;  
 
+    if (!userId) {
+      setError("User ID not found.");
+      setLoading(false);
+      return;
+    }
+
+    const avaliacao = {
+      authorId: userId, 
+      professorID: professorID,
+      disciplinaID: disciplinaID,
+      conteudo,
+    };
+
+    try {
       await createAvaliacao(avaliacao);
       alert("Avaliação enviada com sucesso!");
       onClose();

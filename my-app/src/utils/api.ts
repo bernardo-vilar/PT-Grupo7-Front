@@ -53,6 +53,15 @@ export const patchUser = async (user: Partial<User>, id: number) => {
   }
 };
 
+export const fetchAvaliacoesByUser = async (authorId: number) => {
+  const response = await fetch(`/api/avaliacao/user/${authorId}`);
+  if (!response.ok) {
+    throw new Error("Failed to fetch avaliacoes.");
+  }
+  return await response.json();
+};
+
+
 
 
 // Interface para Professor

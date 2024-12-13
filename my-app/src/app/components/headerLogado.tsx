@@ -8,6 +8,7 @@ const HeaderLogado = () => {
   const router = useRouter();
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("user");
     router.push("/login");
   };
 
@@ -41,7 +42,6 @@ const HeaderLogado = () => {
             ></Image>
           </Link>
 
-          {/* Sair (Logout) Button */}
           <button onClick={handleLogout} className="hover:scale-110">
             <Image
               src="/sair.png"
