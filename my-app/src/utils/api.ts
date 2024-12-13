@@ -103,3 +103,13 @@ export const createAvaliacao = async (avaliacao: Avaliacao) => {
   }
 };
 
+export const getDisciplinas = async () => {
+  try {
+    const response = await api.get("/disciplina");
+    return response.data; // Retorna a lista de disciplinas
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || "Erro ao buscar disciplinas");
+  }
+};
+
+

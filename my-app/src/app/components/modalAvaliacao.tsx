@@ -1,5 +1,5 @@
-import React, { FC, useState } from "react";
-import { createAvaliacao } from "@/utils/api"; // Importa a função de criação de avaliação
+import React, { FC, useState, useEffect } from "react";
+import { createAvaliacao, getDisciplinas, getProfessores } from "@/utils/api"; // Importa as funções de criação de avaliação, buscar disciplinas e buscar professores
 
 interface ModalAvaliacaoProps {
   isOpen: boolean;
@@ -7,11 +7,36 @@ interface ModalAvaliacaoProps {
 }
 
 const ModalAvaliacao: FC<ModalAvaliacaoProps> = ({ isOpen, onClose }) => {
-  const [professorName, setProfessorName] = useState("");
-  const [disciplinaName, setDisciplinaName] = useState("");
+  const [professorID, setProfessorID] = useState<number | null>(null);
+  const [disciplinaID, setDisciplinaID] = useState<number | null>(null);
   const [conteudo, setConteudo] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [professores, setProfessores] = useState([]);
+  const [disciplinas, setDisciplinas] = useState([]);
+
+  useEffect(() => {
+    const fetchProfessores = async () => {
+      try {
+        const professores = await getProfessores();
+        setProfessores(professores);
+      } catch (err) {
+        console.error("Erro ao buscar professores", err);
+      }
+    };
+
+    const fetchDisciplinas = async () => {
+      try {
+        const disciplinas = await getDisciplinas();
+        setDisciplinas(disciplinas);
+      } catch (err) {
+        console.error("Erro ao buscar disciplinas", err);
+      }
+    };
+
+    fetchProfessores();
+    fetchDisciplinas();
+  }, []);
 
   if (!isOpen) return null;
 
@@ -20,14 +45,15 @@ const ModalAvaliacao: FC<ModalAvaliacaoProps> = ({ isOpen, onClose }) => {
     setError(null);
 
     try {
+      // A avaliação é criada com o ID do professor e disciplina automaticamente
       const avaliacao = {
-        authorId: 1, // Substituir pelo ID real do autor
-        professorName,
-        disciplinaName,
-        conteudo,
+        authorId: 1, // Substituir pelo ID real do autor (provavelmente vem de um estado ou contexto)
+        professorID: professorID, // Professor ID
+        disciplinaID: disciplinaID, // Disciplina ID
+        conteudo, // Conteúdo da avaliação
       };
 
-      await createAvaliacao(avaliacao); 
+      await createAvaliacao(avaliacao);
       alert("Avaliação enviada com sucesso!");
       onClose();
     } catch (err: any) {
@@ -42,20 +68,32 @@ const ModalAvaliacao: FC<ModalAvaliacaoProps> = ({ isOpen, onClose }) => {
       <div className="bg-emerald-200 rounded-lg p-6 w-[600px] h-[500px]">
         <h2 className="text-2xl font-bold mb-4">Nova Avaliação</h2>
         <div>
-          <input
-            type="text"
-            placeholder="Nome do Professor"
+          <select
             className="w-full mb-4 p-2 border rounded-lg"
-            value={professorName}
-            onChange={(e) => setProfessorName(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Nome da Disciplina"
+            value={professorID || ""}
+            onChange={(e) => setProfessorID(Number(e.target.value))}
+          >
+            <option value="" disabled>Selecione um Professor</option>
+            {professores.map((professor) => (
+              <option key={professor.id} value={professor.id}>
+                {professor.nome}
+              </option>
+            ))}
+          </select>
+
+          <select
             className="w-full mb-4 p-2 border rounded-lg"
-            value={disciplinaName}
-            onChange={(e) => setDisciplinaName(e.target.value)}
-          />
+            value={disciplinaID || ""}
+            onChange={(e) => setDisciplinaID(Number(e.target.value))}
+          >
+            <option value="" disabled>Selecione uma Disciplina</option>
+            {disciplinas.map((disciplina) => (
+              <option key={disciplina.id} value={disciplina.id}>
+                {disciplina.nome}
+              </option>
+            ))}
+          </select>
+
           <textarea
             placeholder="Escreva sua avaliação..."
             className="w-full p-2 border rounded-lg h-60 resize-none"
@@ -84,6 +122,5 @@ const ModalAvaliacao: FC<ModalAvaliacaoProps> = ({ isOpen, onClose }) => {
     </div>
   );
 };
-
 
 export default ModalAvaliacao;
