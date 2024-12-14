@@ -9,7 +9,7 @@ const HeaderLogado = ({ FotoPerfil }) => {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("user");
 
-    router.push("/feed");
+    router.push("/");
   };
 
   return (
