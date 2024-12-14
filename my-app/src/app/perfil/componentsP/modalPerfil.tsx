@@ -21,9 +21,6 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
             alt="Avatar"
             className="rounded-full w-24 h-24 mx-auto"
           />
-          <button className="mt-2 bg-blue-500 text-white px-4 py-1 rounded">
-            Trocar Foto
-          </button>
         </div>
         <form>
           <div className="space-y-4">
