@@ -54,31 +54,28 @@ export const patchUser = async (user: Partial<User>, id: number) => {
 };
 
 export const fetchAvaliacoesByUser = async (userId: number) => {
-  const response = await fetch(
-     `${process.env.NEXT_PUBLIC_API_URL}/avaliacao/user/${userId}`
+  try {
+    const response = await api.get(
+      `/avaliacao/user/${userId}`
     );
-  if (!response.ok) {
+    return response.data;
+  } catch (error) {
     throw new Error("Failed to fetch avaliacoes.");
   }
-  return await response.json();
 };
 
 export const deleteUser = async (userId: number) => {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/${userId}`, {
-      method: "DELETE",
-    });
-    if (!response.ok) {
-      throw new Error("Failed to delete user.");
-    }
+    const response = await api.delete(
+      `/user/${userId}`
+    );
     alert("Usuário deletado com sucesso!");
     window.location.href = "/";
-  } catch (err: any) {
-    console.error("Error deleting user:", err.message);
+  } catch (error) {
+    console.error("Error deleting user:", error.message);
     alert("Erro ao deletar o usuário.");
   }
 };
-
 
 
 
