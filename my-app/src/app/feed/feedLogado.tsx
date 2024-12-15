@@ -60,6 +60,7 @@ const FeedLogado = () => {
         {novosProfessores.map((professor) => (
           <ProfessorCard
             key={professor.id} // Usando 'id' como chave
+            id={professor.id}
             nome={professor.nome}
             disciplina={professor.disciplina || { nome: "Sem disciplina" }} // Fallback caso disciplina não exista
             foto={professor.foto || "/lamar.jpg"} // Garantir foto padrão
