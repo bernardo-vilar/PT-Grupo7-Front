@@ -44,12 +44,23 @@ export const loginUser = async (credentials: { email: string; senha: string }) =
     return response.data; 
   };
 
-export const patchUser = async (user: Partial<User>, id: number) => {
+export const updatePassword = async (
+  newPassword: string
+): Promise<void> => {
   try {
-    const response = await api.patch(`/user/${id}`, user);
-    return response.data;
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const userId = user?.id;
+    if (!userId) {
+      throw new Error('Usuário não está autenticado.');
+    }
+    await api.patch(`/user/${userId}`, {
+      senha: newPassword
+    });
   } catch (error: any) {
-    throw new Error(error.response?.data?.message || "Failed to update user");
+    if (error.response?.data?.message) {
+      throw new Error(error.response.data.message);
+    }
+    throw new Error('Erro ao atualizar a senha. Tente novamente mais tarde.');
   }
 };
 

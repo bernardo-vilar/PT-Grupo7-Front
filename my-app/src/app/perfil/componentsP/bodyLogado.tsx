@@ -105,15 +105,15 @@ const BodyLogado = () => {
           {/* Editar Perfil Button */}
           <button
             onClick={handleOpenModal}
-            className="absolute top-[160px] left-[450px] px-[15px] py-[5px] bg-customGreen text-black font-inter rounded-lg border-[1px] border-black shadow-md hover:bg-[#3EEE9A] focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-75"
+            className="absolute top-[160px] left-[450px] px-[13px] py-[5px] w-32 bg-customGreen text-black font-inter rounded-lg border-[1px] border-black shadow-md hover:bg-[#3EEE9A] focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-75"
           >
-            Editar Perfil
+            Editar Senha
           </button>
 
           {/* Excluir Perfil Button */}
           <button
             onClick={handleDeleteUser}
-            className="absolute top-[200px] left-[450px] px-[13px] py-[4px] bg-[#FEA4A4] text-black font-inter rounded-lg border-[1px] border-black shadow-md hover:bg-[#f00] focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-75"
+            className="absolute top-[200px] left-[450px] px-[13px] py-[4px] w-32 bg-[#FEA4A4] text-black font-inter rounded-lg border-[1px] border-black shadow-md hover:bg-[#f00] focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-75"
           >
             Excluir Perfil
           </button>
