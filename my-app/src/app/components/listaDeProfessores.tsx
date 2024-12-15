@@ -7,6 +7,7 @@ const ListaDeProfessores = ({ professores }) => {
       {professores.map((professor, index) => (
         <ProfessorCard
           key={index}
+          id={professor.id}
           nome={professor.nome}
           disciplina={professor.disciplina}
           foto={professor.foto}
