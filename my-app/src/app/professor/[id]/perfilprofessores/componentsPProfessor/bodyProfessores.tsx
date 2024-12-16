@@ -4,18 +4,14 @@ import Cursos from "./cursos";
 import BotaoVoltar from "./botaoVoltar";
 import Comentario from "./comentario";
 
-const BodyProfessores = ({FotoPerfilProfessores, NomeProfessor,  DisciplinaProfessor, departamento }) => {
+const BodyProfessores = ({FotoPerfilProfessores, NomeProfessor,  DisciplinaProfessor, departamento, conteudoComentario, createdAt, nomeUsuarioComentario, numeroComentarios, avaliacoes,}) => {
 
-    const cursosProfessor = "Muitos cursos"
-    const departamentoProfessor = "CIC"
+
     const fotoPerfilComentario = "/perfil.png"
-    const nomeUsuarioComentario = "Morty Gamer"
-    const createdAt = "29 de fev, as 23:99"
-    const nomeProfessor = "Joao Frango"
-    const disciplinaProfessor = "Surf"
-    const conteudoComentario = "Professor Bacana. Adoro quando falta!Professor Bacana. Adoro quando falta!Professor Bacana. Adoro quando falta!Professor Bacana. Adoro quando falta!"
-    const numeroComentarios = "10"
-
+    
+    const nomeProfessor = NomeProfessor
+    const disciplinaProfessor = DisciplinaProfessor
+   
     return (
         <>
             <div className="flex items-center justify-center h-screen bg-gray-200">
@@ -44,11 +40,28 @@ const BodyProfessores = ({FotoPerfilProfessores, NomeProfessor,  DisciplinaProfe
                         <div className="absolute top-[350px] left-[10px]">
                             <h2 className="font-bold text-black">Publicações</h2>
                         </div>
-                        <div className="absolute top-[380px]"> 
-                            <Comentario FotoPerfil={fotoPerfilComentario} NomeUsuario={nomeUsuarioComentario} CreatedAt={createdAt} NomeProfessor={nomeProfessor} DisciplinaProfessor={disciplinaProfessor} ConteudoComentario={conteudoComentario} NumeroComentarios={numeroComentarios}/></div>  
-                </div>
-            </div>
+                        </div>
+          <div className="absolute top-[380px] overflow-y-scroll h-[400px]">
+            {avaliacoes?.length > 0 ? (
+              avaliacoes.map((avaliacao) => (
+                <Comentario
+                      key={avaliacao.id}
+                      FotoPerfil="/perfil.png" // Placeholder ou passe uma URL real se existir
+                      NomeUsuario={avaliacao.author}
+                      CreatedAt={new Date(avaliacao.createdAt).toLocaleString()}
+                      ConteudoComentario={avaliacao.conteudo} 
+                      NomeProfessor={NomeProfessor} 
+                      DisciplinaProfessor={DisciplinaProfessor} 
+                      NumeroComentarios={undefined}                />
+              ))
+            ) : (
+              <p>Nenhuma avaliação disponível.</p>
+            )}
+          </div>
         </div>
+                </div>
+            
+    
         </>
     )
 }
