@@ -44,7 +44,7 @@ export default function PerfilProfessoresDeslogado({Id}) {
   }
 
   // Desestruturação para obter partes específicas do professor
-  const { nome, disciplina, departamento, fotoPerfil } = professor;
+  const { nome, disciplina, departamento, fotoPerfil, avaliacoes } = professor;
 
   return (
     <main className="bg-gray-200 min-h-screen">
@@ -54,6 +54,7 @@ export default function PerfilProfessoresDeslogado({Id}) {
         NomeProfessor={nome || "Nome não disponível"} // Nome padrão
         DisciplinaProfessor={disciplina.nome}
         departamento={departamento}
+        avaliacoes={avaliacoes}
       />
     </main>
   );
