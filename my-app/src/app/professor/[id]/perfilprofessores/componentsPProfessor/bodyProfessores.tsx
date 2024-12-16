@@ -14,9 +14,9 @@ const BodyProfessores = ({FotoPerfilProfessores, NomeProfessor,  DisciplinaProfe
    
     return (
         <>
-            <div className="flex items-center justify-center h-screen bg-gray-200">
+            <div className="flex items-center justify-center h-screen overflow-y-auto bg-gray-200">
                 <div 
-                    className=" relative top-[0px] left-[1/2] w-[646px] h-screen border-t-[0px] border-r-[1px] border-b-[0px] border-l-[1px] border-black opacity-100 bg-[#FFF]"
+                    className=" relative top-[0px] left-[1/2] w-[646px] h-screen border-t-[0px] border-r-[1px] border-b-[0px] border-l-[1px] border-black opacity-100  bg-[#FFF] "
                 >   
                 <div
                     className="absolute top-[0px] letf-[0px] w-[644px] h-[151px] opacity-100 bg-[#3EEE9A]"
@@ -41,7 +41,7 @@ const BodyProfessores = ({FotoPerfilProfessores, NomeProfessor,  DisciplinaProfe
                             <h2 className="font-bold text-black">Publicações</h2>
                         </div>
                         </div>
-          <div className="absolute top-[380px] overflow-y-scroll h-[400px]">
+          <div className="absolute top-[380px] overflow-y-auto h-[400px]">
             {avaliacoes?.length > 0 ? (
               avaliacoes.map((avaliacao) => (
                 <Comentario
@@ -52,7 +52,7 @@ const BodyProfessores = ({FotoPerfilProfessores, NomeProfessor,  DisciplinaProfe
                       ConteudoComentario={avaliacao.conteudo} 
                       NomeProfessor={NomeProfessor} 
                       DisciplinaProfessor={DisciplinaProfessor} 
-                      NumeroComentarios={undefined}                />
+                      NumeroComentarios={avaliacoes.length}                />
               ))
             ) : (
               <p>Nenhuma avaliação disponível.</p>
