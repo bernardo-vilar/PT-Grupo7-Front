@@ -80,8 +80,7 @@ const FeedLogado = () => {
             key={professor.id} // Usando 'id' como chave
             nome={professor.nome}
             disciplina={professor.disciplina || { nome: "Sem disciplina" }} // Fallback caso disciplina não exista
-            foto={professor.foto || "/lamar.jpg"}
-          />
+            foto={professor.foto || "/lamar.jpg"} id={undefined}          />
         ))}
       </section>
 

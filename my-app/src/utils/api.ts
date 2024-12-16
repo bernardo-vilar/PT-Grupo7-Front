@@ -108,6 +108,17 @@ export const getProfessores = async () => {
   }
 };
 
+
+export const getProfessor = async (ProfessorId: number) => {
+  try {
+    const response = await api.get(`/professores/${ProfessorId}`); // A rota do backend para obter os dados do professor pelo ID
+    return response.data; // Retorna os dados do professor
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || "Falha ao buscar os dados do professor");
+  }
+};
+
+
 // Criar um novo professor
 export const createProfessor = async (professor: Professor) => {
   try {

@@ -4,7 +4,7 @@ import Cursos from "./cursos";
 import BotaoVoltar from "./botaoVoltar";
 import Comentario from "./comentario";
 
-const BodyProfessores = ({FotoPerfilProfessores, NomeProfessor}) => {
+const BodyProfessores = ({FotoPerfilProfessores, NomeProfessor,  DisciplinaProfessor, departamento }) => {
 
     const cursosProfessor = "Muitos cursos"
     const departamentoProfessor = "CIC"
@@ -36,8 +36,8 @@ const BodyProfessores = ({FotoPerfilProfessores, NomeProfessor}) => {
                             >
                             </Image>
                             <h2 className="relative top-[70px] left-[75px] font-bold text-lg mt-4">{NomeProfessor}</h2>
-                            <Departamento DepartamentoProfessor={departamentoProfessor}/>
-                            <Cursos CursosProfessor={cursosProfessor}/>
+                            <Departamento DepartamentoProfessor={departamento}/>
+                            <Cursos CursosProfessor={ DisciplinaProfessor}/>
                         </div>
                         <div className="flex item-center justify-center w-[646px] h-[1px] opacity-100 bg-[#000] absolute top-[350px]"> </div>
                         <BotaoVoltar />
