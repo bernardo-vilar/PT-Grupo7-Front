@@ -6,6 +6,7 @@ import ProfessorCard from "../components/professorCard";
 import OrdernarLogado from "../components/ordenarLogado";
 import ModalAvaliacao from "../components/modalAvaliacao";
 import { getProfessores } from "@/utils/api"; // Importando o método correto da API
+import ListaDeProfessores from "../components/listaDeProfessores";
 
 const FeedLogado = () => {
   const [novosProfessores, setNovosProfessores] = useState([]);
@@ -74,15 +75,7 @@ const FeedLogado = () => {
       <OrdernarLogado />
 
       {/* Card dos todos os professores */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-7 mt-10 max-w-7xl mx-auto">
-        {professoresFiltrados.map((professor) => (
-          <ProfessorCard
-            key={professor.id} // Usando 'id' como chave
-            nome={professor.nome}
-            disciplina={professor.disciplina || { nome: "Sem disciplina" }} // Fallback caso disciplina não exista
-            foto={professor.foto || "/lamar.jpg"} id={undefined}          />
-        ))}
-      </section>
+      <ListaDeProfessores professores={professoresFiltrados} />
 
       <hr className="border-t-2 border-black my-4 mx-auto w-11/12" style={{ width: "calc(100% - 12rem)" }} />
         
