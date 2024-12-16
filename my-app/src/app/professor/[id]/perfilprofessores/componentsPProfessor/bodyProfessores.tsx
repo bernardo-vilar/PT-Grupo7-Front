@@ -52,7 +52,7 @@ const BodyProfessores = ({FotoPerfilProfessores, NomeProfessor,  DisciplinaProfe
                       ConteudoComentario={avaliacao.conteudo} 
                       NomeProfessor={NomeProfessor} 
                       DisciplinaProfessor={DisciplinaProfessor} 
-                      NumeroComentarios={avaliacoes.length}                />
+                      NumeroComentarios={avaliacao.comments?.length.toString()}                />
               ))
             ) : (
               <p>Nenhuma avaliação disponível.</p>

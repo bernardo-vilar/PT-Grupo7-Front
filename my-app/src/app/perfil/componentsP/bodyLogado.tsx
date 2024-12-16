@@ -74,7 +74,7 @@ const BodyLogado = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-200">
+    <div className="flex items-center justify-center h-screen overflow-y-auto bg-gray-200">
       <div className="relative top-[0px] left-[1/2] w-[646px] h-screen border-t-[0px] border-r-[1px] border-b-[0px] border-l-[1px] border-black opacity-100 bg-[#FFF]">
         <div className="absolute top-[0px] left-[0px] w-[644px] h-[151px] opacity-100 bg-[#3EEE9A]">
           <div>
