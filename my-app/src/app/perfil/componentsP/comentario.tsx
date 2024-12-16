@@ -1,10 +1,18 @@
 import Image from "next/image"
 import Link from 'next/link';
 
-const Comentario = ({FotoPerfil, NomeUsuario, CreatedAt, NomeProfessor, DisciplinaProfessor, ConteudoComentario, NumeroComentarios}) => {
+const Comentario = ({FotoPerfil, NomeUsuario, CreatedAt, NomeProfessor, DisciplinaProfessor, ConteudoComentario, NumeroComentarios, onDelete,}) => {
     return (
         <>      
             <div className="relative bg-[#3EEE9A] w-[630px] rounded-[32px] opacity-100 py-10 my-4 mx-2">
+            {onDelete && (
+                <button
+                onClick={onDelete}
+                className="absolute top-3 right-4 text-red-600 hover:text-red-800 text-sm font-bold"
+            >
+                Excluir
+                </button>
+            )}
                 <p className="font-inter text-[#222E50] text-lg w-[590px] my-3 mx-12 px-4">{ConteudoComentario}</p>
                 <div className="flex item-center absolute top-[10px] left-[10px]">
                 <Image                                

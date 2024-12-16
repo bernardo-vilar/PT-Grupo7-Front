@@ -7,7 +7,7 @@ import Email from "./email";
 import BotaoVoltar from "./botaoVoltar";
 import Comentario from "./comentario";
 import ModalEditarPerfil from "./modalPerfil";
-import { fetchAvaliacoesByUser, deleteUser } from "@/utils/api";
+import { fetchAvaliacoesByUser, deleteUser, deleteAvaliacao} from "@/utils/api";
 
 const BodyLogado = () => {
   const [userData, setUserData] = useState({
@@ -73,6 +73,26 @@ const BodyLogado = () => {
     }
   };
 
+  const handleDeleteAvaliacao = async (avaliacaoId: number) => {
+    const confirmDelete = window.confirm(
+      "Tem certeza de que deseja excluir esta avaliação? Esta ação é irreversível."
+    );
+
+    if (!confirmDelete) return;
+
+    try {
+      await deleteAvaliacao(avaliacaoId);
+      setAvaliacoes((prevAvaliacoes) =>
+        prevAvaliacoes.filter((avaliacao) => avaliacao.id !== avaliacaoId)
+      );
+
+      alert("Avaliação excluída com sucesso!");
+    } catch (error) {
+      console.error("Erro ao excluir avaliação:", error);
+      alert("Erro ao excluir a avaliação. Tente novamente mais tarde.");
+    }
+  };
+
   return (
     <div className="flex items-center justify-center h-screen overflow-y-auto bg-gray-200">
       <div className="relative top-[0px] left-[1/2] w-[646px] h-screen border-t-[0px] border-r-[1px] border-b-[0px] border-l-[1px] border-black opacity-100 bg-[#FFF]">
@@ -133,7 +153,8 @@ const BodyLogado = () => {
                   NomeProfessor={avaliacao.professor?.nome || "Professor desconhecido"}
                   DisciplinaProfessor={avaliacao.disciplina?.nome || "Disciplina desconhecida"}
                   ConteudoComentario={avaliacao.conteudo}
-                  NumeroComentarios={avaliacao.comments.length.toString()} // Display comment count
+                  NumeroComentarios={avaliacao.comments.length.toString()}
+                  onDelete={avaliacao.authorId === userData.id? () => handleDeleteAvaliacao(avaliacao.id):null}                
                 />
               ))
             ) : (

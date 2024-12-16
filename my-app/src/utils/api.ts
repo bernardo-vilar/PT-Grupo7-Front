@@ -75,6 +75,15 @@ export const fetchAvaliacoesByUser = async (userId: number) => {
   }
 };
 
+export const deleteAvaliacao = async (avaliacaoId: number) => {
+  try {
+    const response = await api.delete(`/avaliacao/${avaliacaoId}`);
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || "Failed to delete avaliação");
+  }
+};
+
 export const deleteUser = async (userId: number) => {
   try {
     const response = await api.delete(
