@@ -6,6 +6,12 @@ import { useRouter } from "next/navigation";
 
 const HeaderLogado = () => {
   const router = useRouter();
+
+  const playNotificationSound = () => {
+    const audio = new Audio("/sounds/bellding-254774.mp3"); 
+    audio.play();
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("user");
@@ -17,20 +23,21 @@ const HeaderLogado = () => {
       <header className="bg-customGreen flex h-[4rem] items-center justify-between">
         <Image
           src="/LogoUnB.png"
-          alt="Logo da Universidade de Brasília"
+          alt="Logo da Universidade de Brasília"
           width={75}
           height={75}
           className="m-4 hover:scale-110"
         ></Image>
 
         <div className="flex flex-row gap-4 mx-2">
-          <Image
-            src="/notificacao.png"
-            alt="Notificações"
-            width={30}
-            height={30}
-            className="hover:scale-110"
-          ></Image>
+          <button onClick={playNotificationSound} className="hover:scale-110">
+            <Image
+              src="/notificacao.png"
+              alt="Notificações"
+              width={30}
+              height={30}
+            ></Image>
+          </button>
 
           <Link href={"/perfil"}>
             <Image
@@ -57,5 +64,3 @@ const HeaderLogado = () => {
 };
 
 export default HeaderLogado;
-
-

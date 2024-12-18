@@ -5,6 +5,11 @@ import { useRouter } from "next/navigation"; // For navigation
 const HeaderLogado = ({ FotoPerfil }) => {
   const router = useRouter();
 
+  const playNotificationSound = () => {
+    const audio = new Audio("/sounds/bellding-254774.mp3"); 
+    audio.play();
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("user");
@@ -24,13 +29,14 @@ const HeaderLogado = ({ FotoPerfil }) => {
         />
 
         <div className="flex flex-row gap-4 mx-2">
-          <Image
-            src="/notificacao.png"
-            alt="Notificações"
-            width={30}
-            height={30}
-            className="hover:scale-110"
-          />
+        <button onClick={playNotificationSound} className="hover:scale-110">
+            <Image
+              src="/notificacao.png"
+              alt="Notificações"
+              width={30}
+              height={30}
+            ></Image>
+          </button>
 
           <Image
             src={FotoPerfil}
