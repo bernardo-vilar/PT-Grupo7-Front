@@ -1,0 +1,16 @@
+import {Icon} from '@iconify/react';
+
+const Email = ({Email}) => {
+    return (
+        <> 
+            <div className=" relative top-[64px] left-[73px] flex items-center space-x-2 my-1.5">
+                <Icon icon="eva:email-outline" size={1.5} color="black"/>
+                    <p className="font-sans text-[16px] font-normal leading-[18.15px] underline underline-offset-auto decoration-slice">
+                       {Email}
+                    </p>
+            </div>
+        </>
+    )
+}
+
+export default Email;
